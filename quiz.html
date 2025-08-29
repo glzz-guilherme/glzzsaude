@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz — Conhecimentos Rápidos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="accessbar">
+    <button id="contrastToggle" class="ghost-btn" aria-pressed="false">Alto contraste</button>
+    <div class="font-tools">
+      <button id="fontDec" class="ghost-btn">A−</button>
+      <span id="fontSizeLabel">100%</span>
+      <button id="fontInc" class="ghost-btn">A+</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container wrap">
+      <div class="brand"><div class="brand-logo">✅</div><h1>Quiz</h1></div>
+      <button class="hamburger" id="menuBtn" aria-expanded="false">☰ Menu</button>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="guia.html">Guia</a>
+        <a class="nav-link" href="checklist.html">Checklist</a>
+        <a class="nav-link" href="alertas.html">Alertas</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+        <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-head">
+      <h2>Teste seus conhecimentos</h2>
+      <span class="badge">Rápido</span>
+    </div>
+
+    <div class="grid grid-2">
+      <form id="quizForm1" class="card quiz">
+        <h4>Básico (3 questões)</h4>
+        <div class="q">
+          <p><strong>1.</strong> É seguro começar vitaminas por conta própria?</p>
+          <label><input type="radio" name="q1" value="a"> Sim, qualquer uma</label>
+          <label><input type="radio" name="q1" value="b"> Não, com orientação</label>
+        </div>
+        <div class="q">
+          <p><strong>2.</strong> Caminhada leve pode ajudar durante a gestação?</p>
+          <label><input type="radio" name="q2" value="a"> Sim, se o médico liberar</label>
+          <label><input type="radio" name="q2" value="b"> Não</label>
+        </div>
+        <div class="q">
+          <p><strong>3.</strong> Redução dos movimentos do bebê é sinal de atenção?</p>
+          <label><input type="radio" name="q3" value="a"> Sim</label>
+          <label><input type="radio" name="q3" value="b"> Não</label>
+        </div>
+        <div class="row">
+          <button type="button" class="btn" id="quizBtn1">Conferir</button>
+          <span id="quizOut1" class="muted"></span>
+        </div>
+      </form>
+
+      <form id="quizForm2" class="card quiz">
+        <h4>Nutrição (3 questões)</h4>
+        <div class="q">
+          <p><strong>1.</strong> Qual prato é mais recomendado?</p>
+          <label><input type="radio" name="q4" value="a"> Fast-food</label>
+          <label><input type="radio" name="q4" value="b"> Só carboidrato</label>
+          <label><input type="radio" name="q4" value="c"> Prato colorido e variado</label>
+        </div>
+        <div class="q">
+          <p><strong>2.</strong> Água durante o dia:</p>
+          <label><input type="radio" name="q5" value="a"> Não faz diferença</label>
+          <label><input type="radio" name="q5" value="b"> É importante manter hidratação</label>
+        </div>
+        <div class="q">
+          <p><strong>3.</strong> Ultraprocessados:</p>
+          <label><input type="radio" name="q6" value="a"> Evitar excesso</label>
+          <label><input type="radio" name="q6" value="b"> Base da alimentação</label>
+        </div>
+        <div class="row">
+          <button type="button" class="btn" id="quizBtn2">Conferir</button>
+          <span id="quizOut2" class="muted"></span>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>© 2025 — Projeto escolar</footer>
+  <script src="script.js"></script>
+</body>
+</html>

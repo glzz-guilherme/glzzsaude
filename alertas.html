@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sinais de Alerta</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="accessbar">
+    <button id="contrastToggle" class="ghost-btn" aria-pressed="false">Alto contraste</button>
+    <div class="font-tools">
+      <button id="fontDec" class="ghost-btn">A−</button>
+      <span id="fontSizeLabel">100%</span>
+      <button id="fontInc" class="ghost-btn">A+</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container wrap">
+      <div class="brand"><div class="brand-logo">⚠️</div><h1>Sinais de Alerta</h1></div>
+      <button class="hamburger" id="menuBtn" aria-expanded="false">☰ Menu</button>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="guia.html">Guia</a>
+        <a class="nav-link" href="checklist.html">Checklist</a>
+        <a class="nav-link" href="alertas.html">Alertas</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+        <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-head">
+      <h2>O que observar e como agir</h2>
+      <a class="btn danger" href="tel:192">Ligar 192</a>
+    </div>
+
+    <form id="alertForm" class="card" aria-describedby="alertDesc">
+      <p id="alertDesc" class="muted">Se marcar algum destes, procure avaliação médica.</p>
+      <label><input type="checkbox" value="sangramento"> Sangramento vaginal</label>
+      <label><input type="checkbox" value="dor-intensa"> Dor abdominal intensa</label>
+      <label><input type="checkbox" value="pressao-alta"> Dor de cabeça forte + visão turva/inchaço</label>
+      <label><input type="checkbox" value="movimentos-reduzidos"> Movimentos do bebê reduzidos</label>
+      <label><input type="checkbox" value="febre"> Febre persistente</label>
+
+      <div id="alertOutput" style="margin-top:12px"></div>
+      <div class="row" style="margin-top:8px">
+        <button type="button" class="btn" id="checkAlerts">Ver resultado</button>
+        <a class="btn warn" href="#ubs">UBS próxima</a>
+      </div>
+    </form>
+  </main>
+
+  <footer>© 2025 — Projeto escolar</footer>
+  <script src="script.js"></script>
+</body>
+</html>

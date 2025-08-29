@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checklist Pré-natal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="accessbar">
+    <button id="contrastToggle" class="ghost-btn" aria-pressed="false">Alto contraste</button>
+    <div class="font-tools">
+      <button id="fontDec" class="ghost-btn">A−</button>
+      <span id="fontSizeLabel">100%</span>
+      <button id="fontInc" class="ghost-btn">A+</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container wrap">
+      <div class="brand"><div class="brand-logo">🗓️</div><h1>Checklist Pré-natal</h1></div>
+      <button class="hamburger" id="menuBtn" aria-expanded="false">☰ Menu</button>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="guia.html">Guia</a>
+        <a class="nav-link" href="checklist.html">Checklist</a>
+        <a class="nav-link" href="alertas.html">Alertas</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+        <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-head">
+      <h2>Progresso <span id="chkDoneTag" class="badge" hidden>Concluído: <strong id="chkPercentText">0%</strong></span></h2>
+      <div class="row">
+        <progress id="chkProgress" max="100" value="0" aria-label="Progresso"></progress>
+        <span id="chkPercent" class="muted">0%</span>
+      </div>
+    </div>
+
+    <form id="chkForm" class="card" aria-describedby="chkDesc">
+      <p id="chkDesc" class="muted">Marque o que já fez. O progresso fica salvo neste dispositivo.</p>
+
+      <fieldset>
+        <legend><strong>Consultas e exames</strong></legend>
+        <label><input type="checkbox" value="consulta-inicial"> Consulta inicial</label>
+        <label><input type="checkbox" value="hemograma"> Hemograma</label>
+        <label><input type="checkbox" value="urina"> Exame de urina</label>
+        <label><input type="checkbox" value="sorologias"> Sorologias indicadas</label>
+        <label><input type="checkbox" value="ultrassom"> Ultrassom</label>
+      </fieldset>
+
+      <fieldset>
+        <legend><strong>Vacinas</strong></legend>
+        <label><input type="checkbox" value="dtpa"> dTpa</label>
+        <label><input type="checkbox" value="influenza"> Influenza</label>
+        <label><input type="checkbox" value="covid"> Covid-19 (se indicada)</label>
+      </fieldset>
+
+      <div class="row">
+        <button type="button" class="btn" id="saveChecklist">Salvar</button>
+        <button type="button" class="btn ghost" id="clearChecklist">Limpar</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>© 2025 — Projeto escolar</footer>
+  <script src="script.js"></script>
+</body>
+</html>

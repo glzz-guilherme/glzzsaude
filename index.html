@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prevenção e Cuidado — Início</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="accessbar" role="region" aria-label="Ferramentas de acessibilidade">
+    <button id="contrastToggle" class="ghost-btn" aria-pressed="false">Alto contraste</button>
+    <div class="font-tools">
+      <button id="fontDec" class="ghost-btn" aria-label="Diminuir fonte">A−</button>
+      <span id="fontSizeLabel" aria-live="polite">100%</span>
+      <button id="fontInc" class="ghost-btn" aria-label="Aumentar fonte">A+</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container wrap">
+      <div class="brand">
+        <div class="brand-logo">❤️</div>
+        <div>
+          <h1>Prevenção e Cuidado</h1>
+          <p>Informação simples e segura para gestantes e familiares.</p>
+        </div>
+      </div>
+      <button class="hamburger" id="menuBtn" aria-expanded="false">☰ Menu</button>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link" href="index.html">Início</a>
+        <a class="nav-link" href="guia.html">Guia</a>
+        <a class="nav-link" href="checklist.html">Checklist</a>
+        <a class="nav-link" href="alertas.html">Alertas</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+        <a class="nav-link" href="biblioteca.html">Biblioteca</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" role="banner">
+    <div class="hero-inner">
+      <h2>Seu cuidado começa com orientação clara</h2>
+      <p class="muted">Cartões objetivos, checklist salvo no seu celular e sinais de alerta fáceis de entender.</p>
+      <div class="grid grid-fit" style="margin-top:18px">
+        <a class="card" href="guia.html" aria-label="Guia por trimestre">
+          <div class="card-ico">👶</div>
+          <h4>Guia por trimestre</h4>
+          <p class="muted">Cuidados essenciais em cada fase.</p>
+        </a>
+        <a class="card" href="checklist.html" aria-label="Checklist">
+          <div class="card-ico">🗓️</div>
+          <h4>Checklist</h4>
+          <p class="muted">Progresso salvo no dispositivo.</p>
+        </a>
+        <a class="card" href="alertas.html" aria-label="Sinais de alerta">
+          <div class="card-ico">⚠️</div>
+          <h4>Sinais de alerta</h4>
+          <p class="muted">O que observar e como agir.</p>
+        </a>
+        <a class="card" href="quiz.html" aria-label="Quiz">
+          <div class="card-ico">✅</div>
+          <h4>Quiz</h4>
+          <p class="muted">Teste rápido de conhecimentos.</p>
+        </a>
+        <a class="card" href="biblioteca.html" aria-label="Biblioteca">
+          <div class="card-ico">📚</div>
+          <h4>Biblioteca</h4>
+          <p class="muted">Nutrição, saúde mental e mais.</p>
+        </a>
+      </div>
+      <div style="margin-top:16px" class="center">
+        <a class="btn" href="guia.html">Começar</a>
+        <a class="btn danger" href="tel:192" aria-label="Ligar 192">Emergência 192</a>
+      </div>
+      <small class="muted" style="display:block;margin-top:8px">Conteúdo educativo. Em urgência, procure um serviço de saúde.</small>
+    </div>
+  </section>
+
+  <footer>© 2025 — Projeto escolar • Conteúdo educativo • Emergência: 192</footer>
+  <script src="script.js"></script>
+</body>
+</html>

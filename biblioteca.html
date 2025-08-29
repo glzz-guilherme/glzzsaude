@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Biblioteca — Saúde Materno-Infantil</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== ajustes locais da Biblioteca ===== */
+.searchbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 16px}
+.input-wrap{position:relative;min-width:260px;flex:1}
+.input-wrap .icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.55;font-size:14px}
+.input-wrap input{width:100%;padding:10px 12px 10px 30px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;outline:0}
+.input-select{padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;min-width:180px}
+
+.card .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.badge{background:#eef2ff;color:#28328c;border-radius:999px;padding:4px 8px;font-size:.8rem}
+.stat{font-size:.85rem;color:#6b7280}
+
+/* ===== Modal robusto ===== */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999}
+.modal.open{display:flex}
+.modal[hidden]{display:none !important}
+.modal-content{max-width:720px;width:calc(100% - 32px);background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);padding:20px;position:relative}
+.close{position:absolute;top:10px;right:14px;cursor:pointer;font-size:22px;color:#444;border:0;background:transparent}
+.modal-tags{margin-top:8px}
+.modal-tags .badge{margin-right:6px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container wrap">
+    <div class="brand">
+      <h1>Prevenção e Cuidado</h1>
+      <p>Informação simples e segura para gestantes e familiares.</p>
+    </div>
+    <button class="hamburger" id="menuBtn" aria-expanded="false">☰ Menu</button>
+    <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="guia.html">Guia</a>
+      <a href="checklist.html">Checklist</a>
+      <a href="alertas.html">Alertas</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="biblioteca.html" aria-current="page">Biblioteca</a>
+    </nav>
+  </div>
+</header>
+
+<section class="container">
+  <h2>Biblioteca de artigos</h2>
+
+  <div class="searchbar">
+    <div class="input-wrap" role="search">
+      <span class="icon">🔎</span>
+      <input id="libSearch" placeholder="Pesquisar (ex.: amamentação, ferro, ansiedade)" aria-label="Pesquisar artigos">
+    </div>
+
+    <select id="libFilter" class="input-select" aria-label="Filtrar por categoria">
+      <option value="">Todas categorias</option>
+      <option value="Nutrição">Nutrição</option>
+      <option value="Saúde mental">Saúde mental</option>
+      <option value="Atividade física">Atividade física</option>
+      <option value="Pré-natal">Pré-natal</option>
+      <option value="Pós-parto">Pós-parto</option>
+    </select>
+
+    <select id="libSort" class="input-select" aria-label="Ordenar resultados">
+      <option value="recent">Mais recentes</option>
+      <option value="popular">Mais populares</option>
+    </select>
+  </div>
+
+  <div id="libList" class="grid cards-quick"></div>
+</section>
+
+<!-- Modal -->
+<div id="libModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-content card">
+    <button id="closeModal" class="close" aria-label="Fechar">&times;</button>
+    <h3 id="modalTitle"></h3>
+    <p id="modalText" style="margin-top:8px"></p>
+    <div id="modalTags" class="modal-tags"></div>
+  </div>
+</div>
+
+<footer>
+  © 2025 — Projeto escolar • Emergência: 192
+</footer>
+
+<script>
+const artigos = [
+  {titulo:'Alimentação básica na gestação',tags:['Nutrição','Pré-natal'],resumo:'Prato colorido, ferro, ácido fólico, água.',textoCompleto:'Durante a gestação, mantenha uma alimentação balanceada com frutas, verduras, legumes, grãos e proteínas. Suplementação de ácido fólico e ferro conforme orientação profissional. Hidrate-se bem.',popular:120,data:'2025-02-01'},
+  {titulo:'Ansiedade: como lidar',tags:['Saúde mental'],resumo:'Respiração 4-4-4, pausas, rede de apoio.',textoCompleto:'Técnicas simples como respiração 4-4-4, pausas ao longo do dia e conversa com rede de apoio ajudam. Se os sintomas persistirem, procure atendimento psicológico.',popular:95,data:'2025-02-12'},
+  {titulo:'Exercícios seguros',tags:['Atividade física'],resumo:'Caminhada leve, alongar, parar se dor.',textoCompleto:'Caminhada leve e alongamentos são opções seguras quando liberadas pelo profissional. Interrompa se houver dor, tontura ou sangramento.',popular:80,data:'2025-01-20'},
+  {titulo:'Vacinas importantes',tags:['Pré-natal'],resumo:'dTpa, Influenza, conforme orientação.',textoCompleto:'Vacinas como dTpa e Influenza protegem a mãe e o bebê. O momento ideal deve ser indicado na consulta de pré-natal.',popular:150,data:'2025-02-15'},
+  {titulo:'Amamentação: primeiros dias',tags:['Pós-parto'],resumo:'Pega correta, livre demanda.',textoCompleto:'Nos primeiros dias, amamente em livre demanda e observe a pega correta. Procure apoio se houver dor ou fissuras.',popular:210,data:'2025-02-18'},
+  {titulo:'Sono e bem-estar',tags:['Saúde mental','Pós-parto'],resumo:'Rotina e apoio familiar.',textoCompleto:'Rotina de sono, cochilos quando possível e divisão de tarefas com a família ajudam a reduzir o estresse.',popular:70,data:'2025-01-28'},
+  {titulo:'Importância do pré-natal',tags:['Pré-natal'],resumo:'Consultas regulares salvam vidas.',textoCompleto:'O pré-natal identifica riscos, acompanha o desenvolvimento e orienta a família, reduzindo complicações e mortalidade.',popular:300,data:'2025-02-20'},
+  {titulo:'Ferro e anemia na gestação',tags:['Nutrição','Pré-natal'],resumo:'Ferro alimentar + suplementação.',textoCompleto:'Inclua feijões, carnes e vegetais verde-escuros. Suplementação pode ser necessária. Evite café junto das refeições.',popular:60,data:'2025-02-10'}
+];
+
+const libList = document.getElementById('libList');
+const search = document.getElementById('libSearch');
+const filter = document.getElementById('libFilter');
+const sort = document.getElementById('libSort');
+
+const modal = document.getElementById('libModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const modalTags = document.getElementById('modalTags');
+const closeModalBtn = document.getElementById('closeModal');
+
+function formatDate(iso){ const d=new Date(iso); return d.toLocaleDateString('pt-BR'); }
+
+function renderLista(){
+  const f = (search.value||'').toLowerCase();
+  const cat = filter.value;
+  let lista = artigos.filter(a =>
+    (!cat || a.tags.includes(cat)) &&
+    (a.titulo.toLowerCase().includes(f) || a.resumo.toLowerCase().includes(f) || a.tags.join(' ').toLowerCase().includes(f))
+  );
+
+  if(sort.value==='popular'){ lista.sort((a,b)=>b.popular-a.popular); }
+  else { lista.sort((a,b)=>new Date(b.data)-new Date(a.data)); }
+
+  libList.innerHTML = '';
+  if(!lista.length){
+    const empty = document.createElement('div');
+    empty.className='card';
+    empty.innerHTML = '<p class="muted">Nenhum artigo encontrado para este filtro.</p>';
+    libList.appendChild(empty);
+    return;
+  }
+
+  lista.forEach(a=>{
+    const el = document.createElement('article');
+    el.className='card';
+    el.innerHTML = `
+      <h4>${a.titulo}</h4>
+      <p class="muted" style="margin:6px 0 10px">${a.resumo}</p>
+      <div class="meta">
+        <span class="badge">${a.tags.join('</span> <span class="badge">')}</span>
+        <span class="stat">📅 ${formatDate(a.data)}</span>
+        <span class="stat">⭐ ${a.popular}</span>
+      </div>
+      <button class="btn ghost" style="margin-top:10px">Ler mais</button>
+    `;
+    el.querySelector('button').onclick = ()=> openModal(a);
+    libList.appendChild(el);
+  });
+}
+
+function openModal(a){
+  modalTitle.textContent = a.titulo;
+  modalText.textContent = a.textoCompleto;
+  modalTags.innerHTML = a.tags.map(t=>`<span class="badge">${t}</span>`).join(' ');
+  modal.hidden = false;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.hidden = true;
+  document.body.style.overflow='';
+}
+
+search.addEventListener('input', renderLista);
+filter.addEventListener('change', renderLista);
+sort.addEventListener('change', renderLista);
+
+closeModalBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+renderLista();
+</script>
+</body>
+</html>
